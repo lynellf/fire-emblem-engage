@@ -2,9 +2,9 @@
   "name": "fire-emblem-engage-character-map",
   "version": "1.0.0",
   "description": "Find the best job for characters",
-  "main": "index.js",
+  "main": "app.mjs",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.mjs"
   },
   "keywords": [],
   "author": "",

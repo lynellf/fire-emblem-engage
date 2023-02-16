@@ -5,6 +5,7 @@ import {
   asNormalizedCharData
 } from "./normalization.mjs";
 import byRank from "./byRank.mjs";
+import saveAs from "./save-as.mjs";
 
 const keynames = ["HP", "Str", "Mag", "Dex", "Spd", "Def", "Bld", "Lck"];
 
@@ -48,7 +49,11 @@ function App() {
     characterSpecificClasses
   );
 
-  console.log(charsWithRankedClasses);
+  saveAs("out/chars-with-ranked-classes.json", charsWithRankedClasses);
+
+  saveAs("out/classes-normalized.json", normalizedClasses);
+
+  saveAs("out/characters-normalized.json", normalizedCharacters);
 }
 
 App();
