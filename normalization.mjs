@@ -7,7 +7,7 @@ import { zScore, mean, standardDeviation } from "simple-statistics";
  * @param {string[]} keys
  * @param {DataItem[]} dataset
  */
-export default function asNormalizedData(keys = [], dataset = []) {
+export function asNormalizedCharData(keys = [], dataset = []) {
   const rawValues = keys.map((keyname) =>
     dataset.map((item) => item[keyname] ?? 0)
   );
@@ -27,4 +27,27 @@ export default function asNormalizedData(keys = [], dataset = []) {
       {}
     )
   );
+}
+
+/**
+ * @description its hard to compare data that isn't normalized
+ * zscore the data before finding correlation
+ * @typedef {Record<string, number>} DataItem
+ * @param {string[]} keys
+ * @param {DataItem[]} dataset
+ */
+export function asNoramlizedClassData(keys = [], dataset = []) {
+  return dataset.map((item) => {
+    const rawValues = keys.map((key) => item[key] ?? 0);
+    const meanValue = mean(rawValues);
+    const stdValue = standardDeviation(rawValues);
+
+    return keys.reduce(
+      (acc, key) => ({
+        ...acc,
+        [key]: zScore(item[key], meanValue, stdValue)
+      }),
+      {}
+    );
+  });
 }

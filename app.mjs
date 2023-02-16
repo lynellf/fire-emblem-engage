@@ -1,9 +1,25 @@
 import classGrowthRates from "./data/class-growth-rates.json" assert { type: "json" };
 import characterGrowthRates from "./data/character-growth-rates.json" assert { type: "json" };
-import asNormalizedData from "./normalization.mjs";
+import {
+  asNoramlizedClassData,
+  asNormalizedCharData
+} from "./normalization.mjs";
 import byRank from "./byRank.mjs";
 
 const keynames = ["HP", "Str", "Mag", "Dex", "Spd", "Def", "Bld", "Lck"];
+
+const characterSpecificClasses = [
+  { character: "Alfred", class: "Avenir" },
+  { character: "Fogado", class: "Cupido" },
+  { character: "Alear", class: "Divine Dragon" },
+  { character: "Veyle", class: "Fell Child" },
+  { character: "Ivy", class: "Lindwurm" },
+  { character: "Timerra", class: "Picket" },
+  { character: "Hortensia", class: "Sleipnir Rider" },
+  { character: "Diamant", class: "Successeur" },
+  { character: "Alcryst", class: "Tireur d’élite" },
+  { character: "Céline", class: "Vidame" }
+];
 
 const withName = (dataset) => (item, index) => ({
   Name: dataset[index].Name,
@@ -14,18 +30,24 @@ const byKeynameDesc = (keyname) => (a, z) =>
   a[keyname].localeCompare(z[keyname]);
 
 function App() {
-  const normalizedClasses = asNormalizedData(keynames, classGrowthRates).map(
-    withName(classGrowthRates)
-  );
-  const normalizedCharacters = asNormalizedData(keynames, characterGrowthRates)
+  const normalizedClasses = asNoramlizedClassData(
+    keynames,
+    classGrowthRates
+  ).map(withName(classGrowthRates));
+  const normalizedCharacters = asNormalizedCharData(
+    keynames,
+    characterGrowthRates
+  )
     .map(withName(characterGrowthRates))
     .sort(byKeynameDesc("Name"));
 
   const charsWithRankedClasses = byRank(
     keynames,
     normalizedClasses,
-    normalizedCharacters
+    normalizedCharacters,
+    characterSpecificClasses
   );
+
   console.log(charsWithRankedClasses);
 }
 
