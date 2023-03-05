@@ -1,15 +1,13 @@
 {
-  "name": "fire-emblem-engage-character-map",
+  "name": "fire-emblem-engage",
   "version": "1.0.0",
-  "description": "Find the best job for characters",
-  "main": "app.mjs",
-  "scripts": {
-    "start": "node app.mjs"
-  },
-  "keywords": [],
-  "author": "",
+  "description": "Fire Emblem Stuffs",
+  "author": "Ezell Frazier",
   "license": "ISC",
-  "dependencies": {
-    "simple-statistics": "^7.8.3"
-  }
+  "scripts": {
+    "start": "npm start --workspaces"
+  },
+  "workspaces": [
+    "unit-evaluation"
+  ]
 }
