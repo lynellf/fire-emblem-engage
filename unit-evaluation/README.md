@@ -1,5 +1,5 @@
 # fire-emblem-engage-character-map
-![Engage Cover Photo](engage.jpg)
+![Engage Cover Photo](../docs/engage.jpg)
 
  Find the best advanced classes for each character
 
