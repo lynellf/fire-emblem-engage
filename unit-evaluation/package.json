@@ -1,0 +1,13 @@
+{
+  "name": "unit-evaluation",
+  "version": "1.0.0",
+  "description": "Evaluating the skills and growth rates of classes and characters",
+  "author": "Ezell Frazier",
+  "license": "ISC",
+  "scripts": {
+    "start": "node app.mjs"
+  },
+  "dependencies": {
+    "simple-statistics": "^7.8.3"
+  }
+}
